@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--  https://stackoverflow.com/questions/59045136/syntaxerror-unexpected-token-while-compiling-ejs-happening-in-include -->
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+<body class="container">
+
+<header>
+    <%- include('../partials/header.ejs') %>
+</header>
+
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+
+<p><%= tagline %></p>
+
+
+<ul>
+    <% drinks.forEach(function(drink) { %>
+        <li><%= drink.name %> - <%= drink.drunkness %></li>
+    <% }); %>
+</ul> 
+
+</body>
+</html>
