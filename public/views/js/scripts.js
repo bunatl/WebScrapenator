@@ -5,11 +5,6 @@ function foo(){
     document.getElementById("modalBody").innerText = document.getElementById("url").value;
 }
 
-function showPreview() {
-    foo();
-    //alert ( document.getElementById("url").value );
-}
-
 function bar() {
     //https://www.w3schools.com/jsref/met_node_appendchild.asp
     var node = document.createElement("LI"); 
