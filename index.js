@@ -28,7 +28,10 @@ console.log(page.showData());
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 // override express dfault views folder path
-app.set('views', path.join( __dirname, './public/views') );
+app.set('views', path.join( __dirname, '/public/views') );
+// sets route for statics pages: https://stackoverflow.com/questions/18629327/adding-css-file-to-ejs
+app.use(express.static(__dirname + '/public/views'));
+
 
 // index page 
 // index page 

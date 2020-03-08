@@ -1,8 +1,8 @@
 function foo(){
     console.log( document.getElementById("url").value );
-    // document.getElementById("result").value = document.getElementById("url").value;
-    document.getElementById("result").value = "hello text";
-    // document.getElementById("modalBody").innerText = document.getElementById("url").value;
+    document.getElementById("result").value = document.getElementById("url").value;
+    // document.getElementById("result").value = "hello text";
+    document.getElementById("modalBody").innerText = document.getElementById("url").value;
 }
 
 function showPreview() {

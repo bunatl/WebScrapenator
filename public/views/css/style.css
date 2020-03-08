@@ -1,0 +1,59 @@
+/* Variables */
+:root{
+    --content-width: 75vw;
+    --footer-min-height: 5vh;
+}
+
+* {
+    /*border: 1px solid black;*/
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    /* min-height: 100vh; */
+    /* Two divs each to each other */
+    overflow: hidden;
+}
+
+
+/* Content */
+#content{
+    min-height: calc( 100vh - var( --footer-min-height ) );
+    width: var( --content-width );
+    /* Two divs exch to each other */
+    float: left;
+    background: blue;
+}
+
+#commandForm, #result{
+    width: 100%;
+}
+
+
+/* Aside */
+aside{
+    min-height: calc( 100vh - var( --footer-min-height ) );
+    width:  calc( 100vw - var( --content-width ) );
+    /* Two divs nnext to each other */
+    overflow: hidden;
+    background: green;
+}
+
+#menu{
+    background: red;
+    /* height: 30%; */
+}
+
+#commandList{
+    background: yellow;
+    /* height: 70%; */
+}
+
+
+/* Aside */
+footer{
+    min-height: var( --footer-min-height );
+    background: brown;
+    clear: both;
+}
