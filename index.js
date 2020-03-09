@@ -8,6 +8,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+var DomParser = require('dom-parser');
 const fetch = require("node-fetch");
 // joins two paths
 const path = require('path');
@@ -25,7 +26,6 @@ console.log(page.showData());
 //   extended: true
 // }));
 
-
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 // override express dfault views folder path
@@ -33,25 +33,8 @@ app.set('views', path.join( __dirname, '/public/views') );
 // sets route for statics pages: https://stackoverflow.com/questions/18629327/adding-css-file-to-ejs
 app.use(express.static(__dirname + '/public/views'));
 
-
-// index page 
-// index page 
-// app.get('/', function(req, res) {
-//     var drinks = [
-//         { name: 'Bloody Mary', drunkness: 3 },
-//         { name: 'Martini', drunkness: 5 },
-//         { name: 'Scotch', drunkness: 10 }
-//     ];
-//     var tagline = "Any code of your own that you haven't looked at for six or more months might as well have been written by someone else.";
-
-//     res.render('pages/index', {
-//         drinks: drinks,
-//         tagline: tagline
-//     });
-// });
-
 app.get('/', function(req, res) {
-    res.render('pages/index');
+    res.render('pages/index', { myVar: "myTest" } );
 });
 
 // about page 
@@ -64,11 +47,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Form values are stored in req.body
 app.post('/fetchURL', async function (req, res) {
     // Fetch requested page and return its HTML
-    console.log( req.body.url );
-    const htlmResponse = await fetch( req.body.url );
+    // console.log( req.body.url );
+    // body.req lists all element if they have theirs name (by name)
+    // const htlmResponse = await fetch( req.body.url );
+    console.log( req.body );
 
-    const text = await htlmResponse.text();
-    
+    // const text = await htlmResponse.text();
+
+    // var parser = new DomParser();
+    // var dom = await parser.parseFromString(text);
+
+    // const byID = dom.getElementById('search').innerHTML;
+
+    // req.body.parametersInput
+
+    // res.render("pages/index");
+    // res.send( text )
 
 
     // heres the error
@@ -87,8 +81,5 @@ app.post('/fetchURL', async function (req, res) {
     
     // res.render('pages/index', { name: req.body.url });
 });
-
-// app.use(bodyParser.json())
-// app.use(bodyParser.urlencoded({ extended: <true|false> }))
 
 app.listen(PORT_NUMBER, () => console.log("Server is running on port " + PORT_NUMBER));

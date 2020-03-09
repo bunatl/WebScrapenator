@@ -2,18 +2,24 @@
 <form id="commandForm" action="/fetchURL" method="POST">
     <input type="text" id="url" name="url" class="form-control form-control-lg" placeholder="Type here your URL to fetch...">
 
-    <div id="parameters">
-        <label for="parametersInput">Parameters</label>
-        <button type="button" class="btn-sm btn-success">+</button>
-        <input type="text" id="parametersInputElementType" name="parametersInput" placeholder="Element Type">
-        <input type="text" id="parametersInputElementID" name="parametersInput" placeholder="Element ID">
-        <input type="text" id="parametersInputClasses" name="parametersInput" placeholder="Classes">
-        <input type="text" id="parametersInputInnerText" name="parametersInput" placeholder="Inner Text">
-        <button type="button" class="btn-sm btn-danger">Delete</button>
+    <div>
+        Parameters
+        <br>
+        <button type="button" class="btn-sm btn-success" onclick="add()">+</button>
     </div>
 
+    <ul id="parametersInput">
+        <li>
+            <input class="inputField" type="text" name="paramInput" placeholder="Element Type">
+            <input class="inputField" type="text" name="paramInput" placeholder="Element ID">
+            <input class="inputField" type="text" name="paramInput" placeholder="Classes">
+            <input class="inputField" type="text" name="paramInput" placeholder="Inner Text">
+            <button type="button" class="btn-sm btn-danger" onclick="del( this )">Delete</button>
+        </li>
+    </ul>
+
     <div id="checkboxForEachDiv" class="form-check">
-        <input type="checkbox" class="form-check-input" id="checkboxForEach">
+        <input type="checkbox" class="form-check-input" name="checkboxForEach" id="checkboxForEach">
         <label class="form-check-label" for="checkboxForEach">Do command # for each... from command #-1</label>
     </div>
 

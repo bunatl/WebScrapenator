@@ -5,10 +5,15 @@ function foo(){
     document.getElementById("modalBody").innerText = document.getElementById("url").value;
 }
 
-function bar() {
-    //https://www.w3schools.com/jsref/met_node_appendchild.asp
-    var node = document.createElement("LI"); 
-    var textnode = document.createTextNode("Water"); 
-    node.appendChild(textnode); 
-    document.getElementById("results").appendChild(node); 
+function add(){
+    // Clone API: https://api.jquery.com/clone/
+    $( "#parametersInput li:first" ).clone().appendTo( "#parametersInput" );
+}
+
+function del( e ){
+    // Number of elements: https://stackoverflow.com/questions/20040825/check-how-many-li-there-are-in-a-ul-with-javascript/20040849
+    const noLi = document.getElementById("parametersInput").getElementsByTagName("li").length;
+    if ( noLi > 1 )
+        // remove current node: https://stackoverflow.com/questions/2727717/how-to-remove-the-parent-element-using-plain-javascript
+        e.parentElement.remove();
 }
