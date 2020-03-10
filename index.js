@@ -28,13 +28,13 @@ console.log(page.showData());
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
-// override express dfault views folder path
-app.set('views', path.join( __dirname, '/public/views') );
+// override express default views folder path
+app.set('views', path.join( __dirname, '/views') );
 // sets route for statics pages: https://stackoverflow.com/questions/18629327/adding-css-file-to-ejs
-app.use(express.static(__dirname + '/public/views'));
+app.use(express.static(__dirname + '/views'));
 
 app.get('/', function(req, res) {
-    res.render('pages/index', { myVar: "myTest" } );
+    res.render('pages/index', { postResult: "Fetch results will be shown here..." } );
 });
 
 // about page 
@@ -47,39 +47,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Form values are stored in req.body
 app.post('/fetchURL', async function (req, res) {
     // Fetch requested page and return its HTML
-    // console.log( req.body.url );
-    // body.req lists all element if they have theirs name (by name)
-    // const htlmResponse = await fetch( req.body.url );
     console.log( req.body );
-
-    // const text = await htlmResponse.text();
-
-    // var parser = new DomParser();
-    // var dom = await parser.parseFromString(text);
-
-    // const byID = dom.getElementById('search').innerHTML;
-
-    // req.body.parametersInput
-
-    // res.render("pages/index");
-    // res.send( text )
-
-
-    // heres the error
-    // console.log( await JSON.parse( text ) );
-
-    // if (htlmResponse.ok) { // if HTTP-status is 200-299
-    //     // get the response body (the method explained below)
-    //     let json = await htlmResponse.json();
-    //   } else {
-    //     alert("HTTP-Error: " + htlmResponse.status);
-    //   }
-
-    // const aa = await htlmResponse.json();
-
-    // console.log( aa );
+    // body.req lists all element if they have theirs name (by name)
+    const htlmResponse = await fetch( req.body.url );
     
-    // res.render('pages/index', { name: req.body.url });
+    if ( htlmResponse.ok ) {
+        // if HTTP-status is 200-299
+        // get the response body (the method explained below)
+        const textResponse = await htlmResponse.text();
+        // var parser = new DomParser();
+        // var dom = await parser.parseFromString(text);
+        res.render('pages/index', { postResult: textResponse });
+    } else {
+        alert("HTTP-Error: " + htlmResponse.status);
+    }
 });
 
 app.listen(PORT_NUMBER, () => console.log("Server is running on port " + PORT_NUMBER));

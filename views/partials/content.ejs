@@ -1,20 +1,19 @@
-<h1>Web Scraper Tool</h1>
 <form id="commandForm" action="/fetchURL" method="POST">
-    <input type="text" id="url" name="url" class="form-control form-control-lg" placeholder="Type here your URL to fetch...">
+    <input type="text" id="url" name="url" class="form-control form-control-lg" placeholder="Type here your URL to fetch..." required>
 
-    <div>
-        Parameters
-        <br>
-        <button type="button" class="btn-sm btn-success" onclick="add()">+</button>
-    </div>
 
+    <h2>Parameters</h2>
     <ul id="parametersInput">
         <li>
+            
             <input class="inputField" type="text" name="paramInput" placeholder="Element Type">
             <input class="inputField" type="text" name="paramInput" placeholder="Element ID">
             <input class="inputField" type="text" name="paramInput" placeholder="Classes">
             <input class="inputField" type="text" name="paramInput" placeholder="Inner Text">
-            <button type="button" class="btn-sm btn-danger" onclick="del( this )">Delete</button>
+            <button type="button" class="btn-sm btn-danger" onclick="delParameter( this )">Delete</button>
+        </li>
+        <li>
+            <button id="addNewParameterButton" type="button" class="btn btn-success" onclick="addParameter()">Add a new line with parameters</button>
         </li>
     </ul>
 
@@ -23,13 +22,13 @@
         <label class="form-check-label" for="checkboxForEach">Do command # for each... from command #-1</label>
     </div>
 
-    <div id="buttons">
-        <button type="submit" class="btn-lg btn-primary">Fetch page</button>
+    <div id="buttons" class="row">
+        <button type="submit" class="btn-lg btn-primary col">Fetch page</button>
         <!-- Modal from W3Schools -->
         <!-- https://www.w3schools.com/bootstrap4/bootstrap_modal.asp -->
-        <button type="button" class="btn-lg btn-info" data-toggle="modal" data-target="#myModal" onclick="foo()">Preview page</button>
-        <button type="button" class="btn-lg btn-success" onclick="foo()">Add command</button>
+        <button type="button" class="btn-lg btn-info col" data-toggle="modal" data-target="#myModal" onclick="foo()">Preview page</button>
+        <button type="button" class="btn-lg btn-success col" onclick="aa()">Add command</button>
     </div>
 </form>
 
-<textarea id="result"></textarea>
+<textarea id="result"> <%= postResult %> </textarea>
