@@ -3,6 +3,10 @@ class Page{
         this.data = data;
     }
 
+    setData( data ){
+        this.data = data;
+    }
+
     showData(){
         return this.data;
     }

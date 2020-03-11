@@ -17,15 +17,6 @@ const Page = require('./module/page');
 
 const PORT_NUMBER = process.env.SERVER_PORT || 3000;
 
-const page = new Page("heyyyaa");
-console.log(page.showData());
-
-// // https://stackoverflow.com/questions/24330014/bodyparser-is-deprecated-express-4
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({
-//   extended: true
-// }));
-
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 // override express default views folder path
@@ -42,6 +33,20 @@ app.get('/about', function(req, res) {
     res.render('pages/about');
 });
 
+// my test from JS
+app.get('/getFetchedPage', function(req, res) {
+    res.send( page.showData() );
+});
+
+
+app.get('/text', function(req, res) {
+    const text = require('./module/text');
+    // console.log( text );
+    res.send( text );
+});
+
+const page = new Page( "" );
+
 // Parse a request: https://stackoverflow.com/questions/9304888/how-to-get-data-passed-from-a-form-in-express-node-js
 app.use(bodyParser.urlencoded({ extended: true }));
 // Form values are stored in req.body
@@ -57,7 +62,8 @@ app.post('/fetchURL', async function (req, res) {
         const textResponse = await htlmResponse.text();
         // var parser = new DomParser();
         // var dom = await parser.parseFromString(text);
-        res.render('pages/index', { postResult: textResponse });
+        page.setData( textResponse );
+        res.render('pages/index', { postResult: textResponse } );
     } else {
         alert("HTTP-Error: " + htlmResponse.status);
     }

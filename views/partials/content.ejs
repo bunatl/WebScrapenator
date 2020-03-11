@@ -1,15 +1,21 @@
 <form id="commandForm" action="/fetchURL" method="POST">
-    <input type="text" id="url" name="url" class="form-control form-control-lg" placeholder="Type here your URL to fetch..." required>
+    <!-- <input type="text" id="url" name="url" class="form-control form-control-lg" placeholder="Type here your URL to fetch..." required> -->
 
+    <!-- https://www.w3schools.com/bootstrap4/bootstrap_forms_input_group.asp -->
+    <div class="input-group mb-3">
+        <input type="text" id="url" name="url" class="form-control" placeholder="Type here your URL to fetch..." required>
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Fetch page</button>
+        </div>
+    </div>
 
     <h2>Parameters</h2>
     <ul id="parametersInput">
         <li>
-            
-            <input class="inputField" type="text" name="paramInput" placeholder="Element Type">
-            <input class="inputField" type="text" name="paramInput" placeholder="Element ID">
-            <input class="inputField" type="text" name="paramInput" placeholder="Classes">
-            <input class="inputField" type="text" name="paramInput" placeholder="Inner Text">
+            <input class="inputField" type="text" name="element" placeholder="Element Type">
+            <input class="inputField" type="text" name="id" placeholder="Element ID">
+            <input class="inputField" type="text" name="classes" placeholder="Classes">
+            <input class="inputField" type="text" name="innerText" placeholder="Inner Text">
             <button type="button" class="btn-sm btn-danger" onclick="delParameter( this )">Delete</button>
         </li>
         <li>
@@ -17,17 +23,14 @@
         </li>
     </ul>
 
-    <div id="checkboxForEachDiv" class="form-check">
-        <input type="checkbox" class="form-check-input" name="checkboxForEach" id="checkboxForEach">
-        <label class="form-check-label" for="checkboxForEach">Do command # for each... from command #-1</label>
-    </div>
-
-    <div id="buttons" class="row">
-        <button type="submit" class="btn-lg btn-primary col">Fetch page</button>
+    <div class="row tabs">
+        <div id="htmlResult" class="col-2" onclick="tabsButtons(this)">HTML</div>
+        <div id="resResult" class="col-2" onclick="tabsButtons(this)">Result</div>
+        <!-- <div id="resPaddingDiv" class="col-2"></div> -->
+        <!-- <button type="submit" class="btn-lg btn-primary col-3">Fetch page</button> -->
         <!-- Modal from W3Schools -->
         <!-- https://www.w3schools.com/bootstrap4/bootstrap_modal.asp -->
-        <button type="button" class="btn-lg btn-info col" data-toggle="modal" data-target="#myModal" onclick="foo()">Preview page</button>
-        <button type="button" class="btn-lg btn-success col" onclick="aa()">Add command</button>
+        <!-- <button type="button" class="btn-lg btn-info col" data-toggle="modal" data-target="#myModal" onclick="foo()">Preview page</button> -->
     </div>
 </form>
 
