@@ -1,0 +1,56 @@
+
+#content{
+    min-height: var( --content-height );
+    width: var( --content-width );
+    /* Two divs exch to each other */
+    /* display : inline-block; */
+    float: left;
+    /* border: 2px solid blue; */
+    padding: 1% 2%;
+    /* margin-top: 0; */
+}
+
+#commandForm, #result{
+    width: 100%;
+}
+
+#parametersInput{
+    list-style-type: none;
+    width: 100%;
+}
+
+#parametersInput li{
+    margin: 1% auto;
+    text-align: center;
+}
+
+.row{
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.row div{
+    border: 1px solid black;
+    background: #ddd;
+    border-radius: 7px 7px 0 0;
+}
+
+.activeTab{
+    background: gray !important;
+    border-radius: 7px 14px 0 0 !important;
+}
+
+.row div:hover{
+    cursor: pointer;
+    background: lightgray;
+}
+
+#result{
+    padding: 2% 1%;
+}
+
+
+#addCommand{
+    border: 1px solid black;
+}

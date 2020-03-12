@@ -1,0 +1,20 @@
+
+aside{
+    /* min-height: calc( 100vh - var( --footer-min-height ) ); */
+    min-height: var( --content-height );
+    width: calc( 100% - var( --content-width ) );
+    background: green;
+    /* display : inline; */
+    float: right;
+    margin: 0;
+}
+
+#menu{
+    background: seagreen;
+    /* height: 25vh; */
+}
+
+#commandList{
+    background: yellowgreen;
+    /* height: calc( var( --content-height ) - 25vh ); */
+}

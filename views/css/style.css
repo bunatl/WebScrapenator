@@ -1,28 +1,18 @@
 /* Variables */
 :root{
     --body-max-width: 1440px;
-    --h1-height: 8vh;
+    --h1-height: 6vh;
     --content-height: calc( 100vh - var( --footer-min-height ) - var( --h1-height ) );
     --content-width: 75%;
-    --footer-min-height: 5vh;
-
-
+    --footer-min-height: 8vh;
 
     /* --width-without-scrollbars: calc(100vw - (100vw - 100%)); */
 }
 
-* {
-    /*border: 1px solid black;*/
-    /* margin: 0;
-    padding: 0; */
-
-    /* border: 1px solid black; */
-}
-
 h1{
-    height: var( --h1-height );
+    min-height: var( --h1-height );
     margin: 0;
-    padding: 0;
+    padding: 0 4%;
     background: burlywood;
 }
 
@@ -41,77 +31,10 @@ body{
     /* border: 2px solid goldenrod; */
 }
 
-/* Content */
-#content{
-    min-height: var( --content-height );
-    width: var( --content-width );
-    /* Two divs exch to each other */
-    /* display : inline-block; */
-    float: left;
-    border: 2px solid blue;
-    padding: 1% 2%;
-    /* margin-top: 0; */
-}
-
-#commandForm, #result{
-    width: 100%;
-}
-
-#parametersInput{
-    list-style-type: none;
-    width: 100%;
-}
-
-#parametersInput li{
-    margin: 1% auto;
-    text-align: center;
-}
-
-.row{
-    text-align: center;
-    font-size: 1.5em;
-    margin: 0;
-}
-
-.row div{
-    border: 1px solid black;
-}
-
-.row div:hover{
-    background: orange;
-    cursor: pointer;
-}
-
-
-#addCommand{
-    border: 1px solid black;
-}
-
-/* Aside */
-aside{
-    /* min-height: calc( 100vh - var( --footer-min-height ) ); */
-    min-height: var( --content-height );
-    width: calc( 100% - var( --content-width ) );
-    background: green;
-    /* display : inline; */
-    float: right;
-    margin: 0;
-}
-
-#menu{
-    background: seagreen;
-    /* height: 25vh; */
-}
-
-#commandList{
-    background: yellowgreen;
-    /* height: calc( var( --content-height ) - 25vh ); */
-}
-
-
-/* Aside */
 footer{
     min-height: var( --footer-min-height );
-    background: brown;
+    /* background: brown; */
     clear: both;
+    text-align: center;
+    border-top: 2px dashed black;
 }
