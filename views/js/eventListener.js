@@ -31,75 +31,48 @@ function resultArrayInnerJoin( arr, arr2 ){
 
 window.addEventListener('DOMContentLoaded', (event) => {
     setResultTextareaHeight( 0 );
-    // Initialize fetchedPageHTML
-    fetchedPageHTML = httpGet( '/getFetchedPage' );
 
     // fetched data are stored locally
     sessionStorage.setItem( fetchedPage, httpGet( '/getFetchedPage' ) );
 
-    // console.log( fetchedPageHTML );
-
-    // var names = [];
-    // names[0] = prompt("New member name?");
-    // localStorage.setItem("names", JSON.stringify(names));
-
-    // console.log( JSON.stringify(names) );
-
-    // var storedNames = JSON.parse(localStorage.getItem("names"))
-
-    // console.log( storedNames )
-
-
-
-    // names[1] = "nextArrayItem";
-    // localStorage.setItem("names", JSON.stringify(names));
-
-    // console.log( JSON.stringify(names) );
-
-    // var storedNames = JSON.parse(localStorage.getItem("names"))
-
-    // console.log( storedNames[0] + " and " + storedNames[1] + " with lenght " + storedNames[storedNames.length-1] )
-
-
     // https://stackoverflow.com/questions/25028853/addeventlistener-two-functions
-    document.getElementById("parametersInput").onkeyup = parse;
+    document.getElementById("parametersInput").onkeyup = parseMiddleware;
 });
 
-function parse(){
+function parseMiddleware(){
+    const iterations = document.getElementById('parametersInput').getElementsByTagName('input').length / 4;
+    // sessionStorage: https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
+    const htmlToParse = sessionStorage.getItem( fetchedPage );
+    
     // if HTML tab is selected no parsing will be done
-    if( currentTab == "htmlResult" )
-        return;
+    if( currentTab != "htmlResult" )
+        // textToParse, number of total iterations (rows with input), current iteration
+        parse( htmlToParse, iterations, 0 );
+}
+
+function parse( htmlToParse, totalIterations, currentIteration ){
+    // No iterations left -> return
+    if ( totalIterations == 0 ) return;
+
     // Inputs name: element, id, classes, text
     const inputs = document.getElementById('parametersInput').getElementsByTagName('input');
 
-
-
-    // JS local variables:
-    // https://stackoverflow.com/questions/14266730/js-how-to-cache-a-variable
-    // https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
-    // sessionStorage is more suitable: https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
-
-    // fetchedPageHTML = httpGet( '/getFetchedPage' ) 
-    var storedFetchedPageParts = JSON.parse( sessionStorage.getItem( parsedResult ) );
-    console.log(  JSON.parse( sessionStorage.getItem( parsedResult ) ) );
-    // something was stored here
-    if ( storedFetchedPageParts != null )
-        fetchedPageHTML = storedFetchedPageParts[ storedFetchedPageParts.length - 1 ];
-    else
-        fetchedPageHTML = sessionStorage.getItem( fetchedPage ); // or get whole cached HTML page
-    // localStorage['myparsedPageKey'] || localStorage['myKey'];
-
-    // console.log( fetchedPageHTML )
-    
-
+    // if a new row with parametrs (except first one) is empty don't apply empty string on the result parse
+    if ( inputs[ 0 + ( currentIteration * 4 ) ].value == "" &&
+         inputs[ 1 + ( currentIteration * 4 ) ].value == "" &&
+         inputs[ 2 + ( currentIteration * 4 ) ].value == "" &&
+         inputs[ 3 + ( currentIteration * 4 ) ].value == "" )
+        parse( htmlToParse, --totalIterations, ++currentIteration ); 
+        
     // Convert plain fetched text into html object
     // https://tomassetti.me/parsing-html/#browser
     parser = new DOMParser();
-    fetchDoc = parser.parseFromString(fetchedPageHTML, "text/html");
-    console.log( fetchDoc );
+    fetchDoc = parser.parseFromString( htmlToParse, "text/html" );
 
-    if ( inputs["id"].value != "" ){
-        const resultID = fetchDoc.getElementById( inputs["id"].value );
+    // if input field with ID is filled no other inputs are checked
+    // input with name ID (input array 1 + k* iteration)
+    if ( inputs[ 1 + ( currentIteration * 4 ) ].value != "" ){
+        const resultID = fetchDoc.getElementById( inputs[ 1 + ( currentIteration * 4 ) ].value );
         if( resultID != "" && resultID != null ){
             document.getElementById( "result" ).innerHTML = resultID.outerHTML;
             return;
@@ -107,39 +80,45 @@ function parse(){
     }
 
     let resultTag = [];
-    if ( inputs["tag"].value != "" )
-        resultTag = fetchDoc.getElementsByTagName( inputs["tag"].value );
+    // input with name tag (input array 0 + k* iteration)
+    if ( inputs[ 0 + ( currentIteration * 4 ) ].value != "" )
+        resultTag = fetchDoc.getElementsByTagName( inputs[ 0 + ( currentIteration * 4 ) ].value );
 
     let resultClasses = [];
-    if ( inputs["classes"].value != "" )
-        resultClasses = fetchDoc.getElementsByClassName( inputs["classes"].value );
+    // input with name classes (input array 2 + k* iteration)
+    if ( inputs[ 2 + ( currentIteration * 4 ) ].value != "" )
+        resultClasses = fetchDoc.getElementsByClassName( inputs[ 2 + ( currentIteration * 4 )  ].value );
 
     let elementAndClasses = resultArrayInnerJoin( resultTag, resultClasses );
     
-    if ( inputs["text"].value != "" ){
+    // input with name text (input array 3 + k* iteration)
+    if ( inputs[ 3 + ( currentIteration * 4 ) ].value != "" ){
         // by default matching text will be searched in array created from class/element input
         let resultText = [];
         let arrayForSearch = elementAndClasses;
         
         //if both previous arrays are empty takes from whole fetched page for search
-        if ( elementAndClasses.length == 0 ){
+        if ( elementAndClasses.length == 0 )
             // select all tag elements from given URL to search in
             arrayForSearch = fetchDoc.getElementsByTagName("*");
-        }
-        console.log( arrayForSearch );
+            console.log( arrayForSearch );
+
         // check if any el contains given text
         for( item of arrayForSearch ){
-            if ( item.outerHTML.includes( inputs["text"].value ) )
+            if ( item.outerHTML.includes( inputs[ 3 + ( currentIteration * 4 ) ].value ) &&
+                item.tagName != "HTML" &&
+                item.tagName != "HEAD" && 
+                item.tagName != "BODY" )
                 resultText.push( item );
         }
         elementAndClasses = resultText;
-        console.log( elementAndClasses );
     }
 
     // print result into result textbox
     const elResult = document.getElementById( "result" );
+    // in order to print into the textarea, it's innerHTML has to be set to ""
     elResult.innerHTML = "";
-    var finalString = "";
+    var stringForAnotherIterations = "";
     let i = 0;
     for( item of elementAndClasses ){
         const delim = "\n\n\n===================================================================\n\n\n";
@@ -148,21 +127,8 @@ function parse(){
             elResult.innerHTML += delim;
 
         elResult.innerHTML += item.outerHTML;
-        finalString += item.outerHTML;
-        // console.log( parser.parseFromString(item.outerHTML, "text/html") );
+        stringForAnotherIterations += item.outerHTML;
     }
-
-    // console.log( finalString )
-    console.log( parser.parseFromString(finalString, "text/html") );
-    // storedFetchedPageParts sessionstorage
-
-    // names[0] = prompt("New member name?");
-    if( finalString != "" ){
-        parsedResultArray.push( finalString );
-        console.log( parsedResultArray );
-        sessionStorage.setItem( parsedResult, JSON.stringify( parsedResultArray ));
-        console.log( sessionStorage )
-
-        console.log( JSON.parse( sessionStorage.getItem( parsedResult ) ) );
-    }
+    // each iterations if every line of input fields
+    parse( stringForAnotherIterations, --totalIterations, ++currentIteration );
 } 
