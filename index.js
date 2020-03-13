@@ -24,7 +24,8 @@ app.set('views', path.join( __dirname, '/views') );
 app.use(express.static(__dirname + '/views'));
 
 app.get('/', function(req, res) {
-    res.render('pages/index', { postResult: "Fetch results will be shown here..." } );
+    res.render('pages/index', { postResult: "Fetch results will be shown here...",
+                                inputURL : "Type here your URL to fetch..." } );
 });
 
 // about page 
@@ -55,7 +56,7 @@ app.post('/fetchURL', async function (req, res) {
         const textResponse = await htlmResponse.text();
 
         page.setData( textResponse );
-        res.render('pages/index', { postResult: textResponse } );
+        res.render('pages/index', { postResult: textResponse, inputURL : req.body.url } );
     } else {
         alert("HTTP-Error: " + htlmResponse.status);
     }

@@ -1,3 +1,9 @@
+var parsedResultArray = [];
+
+var fetchedPageHTML = "Any page hasn't been fetched yet.";
+
+const fetchedPage = "fetchedPage";
+const parsedResult = "parsedResult";
 
 // Always set aside height equals to content height
 window.addEventListener('click', function(){
@@ -28,7 +34,32 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // Initialize fetchedPageHTML
     fetchedPageHTML = httpGet( '/getFetchedPage' );
 
-    console.log( fetchedPageHTML );
+    // fetched data are stored locally
+    sessionStorage.setItem( fetchedPage, httpGet( '/getFetchedPage' ) );
+
+    // console.log( fetchedPageHTML );
+
+    // var names = [];
+    // names[0] = prompt("New member name?");
+    // localStorage.setItem("names", JSON.stringify(names));
+
+    // console.log( JSON.stringify(names) );
+
+    // var storedNames = JSON.parse(localStorage.getItem("names"))
+
+    // console.log( storedNames )
+
+
+
+    // names[1] = "nextArrayItem";
+    // localStorage.setItem("names", JSON.stringify(names));
+
+    // console.log( JSON.stringify(names) );
+
+    // var storedNames = JSON.parse(localStorage.getItem("names"))
+
+    // console.log( storedNames[0] + " and " + storedNames[1] + " with lenght " + storedNames[storedNames.length-1] )
+
 
     // https://stackoverflow.com/questions/25028853/addeventlistener-two-functions
     document.getElementById("parametersInput").onkeyup = parse;
@@ -41,7 +72,25 @@ function parse(){
     // Inputs name: element, id, classes, text
     const inputs = document.getElementById('parametersInput').getElementsByTagName('input');
 
+
+
+    // JS local variables:
+    // https://stackoverflow.com/questions/14266730/js-how-to-cache-a-variable
+    // https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
+    // sessionStorage is more suitable: https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
+
     // fetchedPageHTML = httpGet( '/getFetchedPage' ) 
+    var storedFetchedPageParts = JSON.parse( sessionStorage.getItem( parsedResult ) );
+    console.log(  JSON.parse( sessionStorage.getItem( parsedResult ) ) );
+    // something was stored here
+    if ( storedFetchedPageParts != null )
+        fetchedPageHTML = storedFetchedPageParts[ storedFetchedPageParts.length - 1 ];
+    else
+        fetchedPageHTML = sessionStorage.getItem( fetchedPage ); // or get whole cached HTML page
+    // localStorage['myparsedPageKey'] || localStorage['myKey'];
+
+    // console.log( fetchedPageHTML )
+    
 
     // Convert plain fetched text into html object
     // https://tomassetti.me/parsing-html/#browser
@@ -90,6 +139,7 @@ function parse(){
     // print result into result textbox
     const elResult = document.getElementById( "result" );
     elResult.innerHTML = "";
+    var finalString = "";
     let i = 0;
     for( item of elementAndClasses ){
         const delim = "\n\n\n===================================================================\n\n\n";
@@ -98,5 +148,21 @@ function parse(){
             elResult.innerHTML += delim;
 
         elResult.innerHTML += item.outerHTML;
+        finalString += item.outerHTML;
+        // console.log( parser.parseFromString(item.outerHTML, "text/html") );
+    }
+
+    // console.log( finalString )
+    console.log( parser.parseFromString(finalString, "text/html") );
+    // storedFetchedPageParts sessionstorage
+
+    // names[0] = prompt("New member name?");
+    if( finalString != "" ){
+        parsedResultArray.push( finalString );
+        console.log( parsedResultArray );
+        sessionStorage.setItem( parsedResult, JSON.stringify( parsedResultArray ));
+        console.log( sessionStorage )
+
+        console.log( JSON.parse( sessionStorage.getItem( parsedResult ) ) );
     }
 } 
