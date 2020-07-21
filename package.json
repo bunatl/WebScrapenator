@@ -4,13 +4,15 @@
   "description": "mywebapp",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index"
+    "start": "node /website/index",
+    "dev": "nodemon /website/index"
   },
   "author": "Lukas Bunat",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dom-parser": "^0.1.6",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",

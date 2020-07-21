@@ -21,7 +21,7 @@ On website https://apify.com/apify/web-scraper, in any given paragraph,  I want 
 * Finally I search for the term "Scraper"
 * Result will give all occurrences, divided by "====" of the word "Scraper"
 
-![Image description](./guide.png)
+![Image description](./GUI.png)
 
 ## Run
 

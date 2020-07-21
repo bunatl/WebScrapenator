@@ -1,23 +1,26 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
 
     <title>WebScraper</title>
-    <meta name="description" content="WebScraper">
+    <meta name="description" content="WebScraperTool">
 
     <!-- Include partials -->
-    <%- include('../partials/head.ejs') %>
-    <%- include('../partials/headCSS.ejs') %>
-    <%- include('../partials/headJS.ejs') %>
-
+    <%- include("../partials/head/head.ejs") %>
+    <%- include('../partials/head/headCSS.ejs') %>
+    <%- include("../partials/head/headJS.ejs") %>
 </head>
 
 <body>
-    <header><h1>Web Scraper Tool</h1></header>
-    <div id="content" >
-        <%- include('../partials/content.ejs' ) %>
-        <%- include('.//modal.ejs') %>
+    <header>
+        <h1>Web Scraper Tool</h1>
+    </header>
+    <div id="content">
+        <%- include('../partials/content/search.ejs' ) %>
+        <%- include('../partials/content/parameters.ejs' ) %>
+        <%- include('../partials/content/result.ejs' ) %>
     </div>
     <aside>
         <%- include('../partials/aside.ejs') %>
