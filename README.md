@@ -1,6 +1,6 @@
 # WebScrapenator
 
-WebScrapenator is a web app that allows scraping data from any given website by specifying parameters.
+WebScrapenator is a web app that allows scraping data from any given website by specifying search parameters.
 
 ## How to use
 * At first insert URL address into the input area on top of the page
@@ -10,7 +10,7 @@ WebScrapenator is a web app that allows scraping data from any given website by 
 * By specifying HTML tags, IDs and classes app scrape data accordingly from given URL
 * Each following parameter applies more specific selection onto previously selected data (from previous line)
 
-## Example
+## Example of usage
 
 On website https://apify.com/apify/web-scraper, in any given paragraph,  I want to find all occurrences of the word "Scraper" that are bold
 
@@ -23,24 +23,14 @@ On website https://apify.com/apify/web-scraper, in any given paragraph,  I want 
 
 ![Image description](./GUI.png)
 
-## Run
+## Website
 
-```npm
-npm start node
-npm run dev
-```
 
 ## ToDo
 * Implement command list
-* Optimize speed
-* Nicer GUI
+* Minor edits in multi-parameter search
+* responsive GUI
 * Testing
 
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
 ## License
-All rights reserved.
