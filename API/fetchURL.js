@@ -13,7 +13,6 @@ router.post('/', async (req, res, next) => {
         url: urlToFetch,
     })
         .then((response) => {
-            // console.log(response.data);
             res.send(response.data);
         })
         .catch((err) => console.error(err));

@@ -1,7 +1,6 @@
 
 aside{
     /* min-height: calc( 100vh - var( --footer-min-height ) ); */
-    min-height: var( --content-height );
     width: calc( 100% - var( --content-width ) );
     background: green;
     /* display : inline; */
@@ -11,8 +10,9 @@ aside{
 
 #menu{
     background: seagreen;
+}    min-height: var( --content-height );
     /* height: 25vh; */
-}
+
 
 #commandList{
     background: yellowgreen;

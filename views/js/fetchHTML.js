@@ -5,20 +5,26 @@ async function fetchHTML () {
     if (!document.getElementById('url').validity.valid)
         alert("Please first insert URL of the website you want to scrape.");
 
+    // clear user URL - instead place it as a placeholder
+    document.getElementById('url').value = "";
+    document.getElementById('url').placeholder = urlToFetch;
+
     const dataTosend = {
         url: urlToFetch
     };
 
     try {
+        document.getElementById("htmlResultTextArea").innerText = "Loading HTML content...";
         const response = await axios({
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            url: "/giveData",
+            url: "/requestData",
             data: JSON.stringify(dataTosend),
         });
-        console.log(response.data);
+        // display results on page
+        document.getElementById("htmlResultTextArea").value = response.data;
     } catch (error) {
         console.error(error);
     }

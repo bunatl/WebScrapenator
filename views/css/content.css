@@ -1,28 +1,40 @@
 
 #content{
-    min-height: var( --content-height );
+    /* min-height: var( --content-height ); */
     width: var( --content-width );
     /* Two divs exch to each other */
     /* display : inline-block; */
     float: left;
     /* border: 2px solid blue; */
-    padding: 1% 2%;
-    /* margin-top: 0; */
+    padding: 1% 2% 0 1%;
+    margin: 0;
 }
 
-#commandForm, #result{
-    width: 100%;
+
+#search{
+    margin: 0 !important;
+}
+
+/* Params */
+
+h2{
+    padding-top: 0.5em;
 }
 
 #parametersInput{
     list-style-type: none;
     width: 100%;
+    margin: 0;
 }
 
 #parametersInput li{
-    margin: 1% auto;
+    /* margin: 1% auto; */
     text-align: center;
 }
+
+
+
+/* Results section */
 
 .row{
     text-align: center;
@@ -46,11 +58,15 @@
     background: lightgray;
 }
 
-#result{
+.tabs textarea{
     padding: 2% 1%;
+    font: red;
 }
 
+.results{
+    width: 100%;
+}
 
-#addCommand{
-    border: 1px solid black;
+#paramResultTextArea{
+    display: none;
 }

@@ -10,7 +10,7 @@ function addParameter () {
     liEl.insertBefore("#addNewParameterButton");
 
     setResultTextareaHeight();
-    parseMiddleware();
+    callParse();
 }
 
 function delParameter (e) {
@@ -22,5 +22,5 @@ function delParameter (e) {
         e.parentElement.remove();
 
     setResultTextareaHeight();
-    parseMiddleware();
+    callParse();
 }

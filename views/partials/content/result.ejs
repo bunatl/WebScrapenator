@@ -1,6 +1,9 @@
 <div class="row tabs">
     <div id="htmlResult" class="col-2 activeTab" onclick="tabsButtons(this)">HTML</div>
-    <div id="resResult" class="col-2" onclick="tabsButtons(this)">Result</div>
+    <div id="paramResult" class="col-2" onclick="tabsButtons(this)">Result</div>
 </div>
 
-<textarea id="result"> <%= postResult %> </textarea>
+<textarea id="htmlResultTextArea"
+    class="results">At first, please fetch HTML data from your desired website via 'Fetch page' button in top side of this page.</textarea>
+<textarea id="paramResultTextArea"
+    class="results">Result will be shown after HTML data are fetched and at least one parameter is specified.</textarea>
