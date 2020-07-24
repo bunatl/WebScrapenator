@@ -28,9 +28,10 @@ On website https://apify.com/apify/web-scraper, in any given paragraph,  I want 
 
 ## ToDo
 * Implement command list
-* Minor edits in multi-parameter search
-* responsive GUI
+* Result can switch between result with inner/outer HTML
+* Responsive GUI
 * Testing
+* Auto fetch URL
 
 
 ## License
