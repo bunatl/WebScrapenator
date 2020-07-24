@@ -10,7 +10,8 @@ function addParameter () {
     liEl.insertBefore("#addNewParameterButton");
 
     setResultTextareaHeight();
-    callParse();
+    // only newly create input, new listners have to be added
+    addEventListenerOnInputFields();
 }
 
 function delParameter (e) {
@@ -22,5 +23,6 @@ function delParameter (e) {
         e.parentElement.remove();
 
     setResultTextareaHeight();
+    // result can change
     callParse();
 }

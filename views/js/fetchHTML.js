@@ -2,8 +2,10 @@ async function fetchHTML () {
     const urlToFetch = document.getElementById("url").value;
 
     // check for empty input
-    if (!document.getElementById('url').validity.valid)
+    if (!document.getElementById('url').validity.valid || urlToFetch == "") {
         alert("Please first insert URL of the website you want to scrape.");
+        return;
+    }
 
     // clear user URL - instead place it as a placeholder
     document.getElementById('url').value = "";

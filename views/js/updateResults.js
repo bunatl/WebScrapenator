@@ -3,14 +3,18 @@
 window.addEventListener('DOMContentLoaded', (event) => {
     // on load set textarea height
     setResultTextareaHeight();
+    // add listeners on input field in order to update results
+    addEventListenerOnInputFields();
+});
 
+function addEventListenerOnInputFields () {
     const paramInputs = document.querySelectorAll('.inputField');
 
     // assign listner to every input field
     paramInputs.forEach(el => el.addEventListener('input', event => {
         callParse();
     }));
-});
+}
 
 function callParse () {
     const iterations = document.getElementById('parametersInput').getElementsByTagName('input').length / 4;
@@ -91,10 +95,11 @@ function parse (htmlToParse, totalIterations, currentIteration) {
     var stringForAnotherIterations = "";
     let i = 0;
     for (item of elementAndClasses) {
-        elResult.value += `\n\n======================= Result #${ i++ + 1 } =======================\n\n`;
+        elResult.value += `\n\n============================ Result #${ i++ + 1 } ============================\n\n`;
 
-        elResult.value += item.innerHTML;
-        stringForAnotherIterations += item.innerHTML;
+        // have to be outerHTML el since some tags (eg. links) don't have any innerHTML
+        elResult.value += item.outerHTML;
+        stringForAnotherIterations += item.outerHTML;
     }
     // each iterations if every line of input fields
     parse(stringForAnotherIterations, --totalIterations, ++currentIteration);
