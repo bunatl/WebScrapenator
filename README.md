@@ -25,11 +25,17 @@ On website https://apify.com/apify/web-scraper, in any given paragraph,  I want 
 
 ## Website
 
+## Technolgies
+- NodeJS
+- Express, Router
+- Cors features
+- Ejs
+
 
 ## ToDo
 * Implement command list
 * Result can switch between result with inner/outer HTML
-* Responsive GUI
+* Responsive GUI + use CSS grid for layout
 * Testing
 * Auto fetch URL
 
