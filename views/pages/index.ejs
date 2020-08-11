@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
 
-    <title>WebScraper</title>
+    <title>Online Web Scraper Tool</title>
+    <meta name="author" content="Lukas Bunat">
     <meta name="description" content="WebScraperTool">
 
     <!-- Include partials -->
     <%- include("../partials/head/head.ejs") %>
-    <%- include('../partials/head/headCSS.ejs') %>
     <%- include("../partials/head/headJS.ejs") %>
 </head>
 
@@ -17,14 +17,11 @@
     <header>
         <h1>Web Scraper Tool</h1>
     </header>
-    <div id="content">
+    <main id="content">
         <%- include('../partials/content/search.ejs' ) %>
         <%- include('../partials/content/parameters.ejs' ) %>
         <%- include('../partials/content/result.ejs' ) %>
-    </div>
-    <aside>
-        <%- include('../partials/aside.ejs') %>
-    </aside>
+    </main>
     <footer>
         <%- include('../partials/footer.ejs') %>
     </footer>

@@ -14,13 +14,22 @@ function tabsButtons (el) {
     if (el.id == tabHTML) {
         document.getElementById(tabResultTextArea).style.display = "none";
         document.getElementById(tabHTMLTextArea).style.display = "initial";
+
+        document.getElementById(tabResult).classList.remove("activeTab");
         activeTab = tabHTMLTextArea;
     }
     else {
         document.getElementById(tabResultTextArea).style.display = "initial";
         document.getElementById(tabHTMLTextArea).style.display = "none";
+
+        document.getElementById(tabHTML).classList.remove("activeTab");
         activeTab = tabResultTextArea;
     }
+
+    // add active class to the current element tab (both were previously removed)
+    const element = document.getElementById(el.id);
+    element.classList.add("activeTab");
+
     setResultTextareaHeight();
 }
 
@@ -48,12 +57,10 @@ function setResultTextareaHeight () {
     const listOfTabs = document.getElementsByClassName('tabs');
     const tabsHeight = listOfTabs[ 0 ].clientHeight;
 
-    const pageMargins = 14;
+    const pageMargins = 50;
 
     const resultTextareaHeight = contentHeight - searchHeight - parametersHeight - tabsHeight - pageMargins;
 
     // set textarea height
     document.getElementById(activeTab).style.height = `${ resultTextareaHeight }px`;
-
-    document.getElementsByTagName('aside')[ 0 ].style.height = `${ contentHeight }px`;
 }

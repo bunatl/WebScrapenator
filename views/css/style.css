@@ -1,39 +1,36 @@
-/* Variables */
-:root{
-    --body-max-width: 1440px;
-    --h1-height: 6vh;
-    --content-height: calc( 100vh - var( --footer-min-height ) - var( --h1-height ) );
-    --content-width: 75%;
-    --footer-min-height: 8vh;
-
-    /* --width-without-scrollbars: calc(100vw - (100vw - 100%)); */
-}
-
-h1{
-    min-height: var( --h1-height );
-    margin: 0;
-    padding: 0 4%;
-    background: burlywood;
-}
-
 body{
-    /* width without width of a scrollbar */
-    /* https://stackoverflow.com/questions/33606565/is-it-possible-to-calculate-the-viewport-width-vw-without-scrollbar */
-    width: calc(100vw - (100vw - 100%));
-    max-width: var( --body-max-width );
-    /* height: calc( 100vh - var( --footer-min-height ) ); */
-    height: 100vh;
+    width: 100vw;
+    max-width: 1440px;
+    min-height: 100vh;
+
     /* Center body */
     margin: 0 auto;
 
-    /* remove scroll bar */
-    overflow-y: hidden;
+    border: 1px solid gray;
+    box-shadow: 0 0 5px 12px #A9A9A9;
+
+    background: lightgray;
+
+    overflow-x: hidden;
+}
+
+header{
+    background: #586c91;
+    color: white;
+    border-bottom: 3px solid black;
+
+    padding-left: 4%;
+    vertical-align: middle;
+
+    text-align: center;
+}
+
+main{
+    width: 90%;
+    margin: 1em auto 0 auto;
 }
 
 footer{
-    min-height: var( --footer-min-height );
-    /* background: brown; */
-    clear: both;
     text-align: center;
     border-top: 2px dashed black;
 }

@@ -1,13 +1,13 @@
 // Add (copy in) new line (li element) as second last li element in ul
 function addParameter () {
     // Clone API: https://api.jquery.com/clone
-    let liEl = $("#parametersInput li:first").clone();
+    let liEl = $("#parametersInput li:first-child").clone();
     // remove any value from all inputs
     for (child of liEl.children())
         child.value = "";
 
-    // insert new parameter row before add button
-    liEl.insertBefore("#addNewParameterButton");
+    // insert new parameter row before add button - second last li
+    liEl.insertAfter("#parametersInput li:nth-last-child(2)");
 
     setResultTextareaHeight();
     // only newly create input, new listners have to be added

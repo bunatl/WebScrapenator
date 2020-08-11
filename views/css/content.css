@@ -1,22 +1,19 @@
-
-#content{
-    /* min-height: var( --content-height ); */
-    width: var( --content-width );
-    /* Two divs exch to each other */
-    /* display : inline-block; */
-    float: left;
-    /* border: 2px solid blue; */
-    padding: 1% 2% 0 1%;
-    margin: 0;
-}
-
-
 #search{
     margin: 0 !important;
 }
 
-/* Params */
+#search input{
+    height: 3.5em;
+    font-size: 1em;
+}
 
+#search button{
+    background: #586c91;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Params */
 h2{
     padding-top: 0.5em;
 }
@@ -25,27 +22,46 @@ h2{
     list-style-type: none;
     width: 100%;
     margin: 0;
+    padding: 0;
+}
+
+#parametersInput input{
+    width: 20%;
+    max-width: 14em;
 }
 
 #parametersInput li{
-    /* margin: 1% auto; */
     text-align: center;
 }
 
+#parametersInput li:first-child > input{
+    font-size: 1em;
+}
 
+/* Add new lines button */
+#parametersInput li:last-child > button{
+    background: #586c91;
+    font-weight: bold;
+}
+
+.delButton{
+    background: red;
+    font-weight: bold;
+}
 
 /* Results section */
-
 .row{
     text-align: center;
     font-size: 1.5em;
-    margin: 0;
+    margin: 1em 0 0 0;
 }
 
 .row div{
     border: 1px solid black;
     background: #ddd;
     border-radius: 7px 7px 0 0;
+
+    min-width: 5em;
 }
 
 .activeTab{
@@ -59,15 +75,32 @@ h2{
 }
 
 .tabs textarea{
-    padding: 2% 1%;
-    font: red;
+    padding: 2% 1%;    
 }
 
 .results{
     width: 100%;
-    font-size: 0.8em;
+    font-size: min(2.2vw, 1.1em);
 }
 
 #paramResultTextArea{
     display: none;
+}
+
+footer{
+    font-size: 1.08em;
+}
+
+footer a, 
+footer a:visited{
+    font-weight: bold;
+    color: black;
+    /* To make trasnform work: https://stackoverflow.com/questions/29667859/transform-css-property-doesnt-work-with-a-element */
+    display: inline-block;
+}
+
+footer a:hover{
+    transform: scale(1.1);
+    text-decoration: none;
+    color: black;
 }
