@@ -13,7 +13,8 @@ Web Scrapenator Tool is a web app that allows scraping data from any given websi
 ## Usage demo
 ![Image description](./demo.gif)
 
-## Hosting
+## Hosting live demo
+Live demo is hosting on [www.scraper.techis.fun/](https://scraper.techis.fun/) hosted with [Vercel](https://vercel.com/) previously Zeit Now v2.
 
 ## Technolgies
 - NodeJS
