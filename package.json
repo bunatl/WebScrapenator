@@ -4,8 +4,8 @@
   "description": "mywebapp",
   "main": "index.js",
   "scripts": {
-    "start": "node /website/index",
-    "dev": "nodemon /website/index"
+    "start": "node index",
+    "dev": "nodemon index"
   },
   "author": "Lukas Bunat",
   "license": "ISC",
