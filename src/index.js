@@ -5,18 +5,13 @@
 
 // express for routes
 const express = require('express');
-const app = express();
-// const bodyParser = require('body-parser');
-// const fetch = require("node-fetch");
 // joins two paths
 const path = require('path');
 require('dotenv').config();
 const axios = require('axios');
+const fetchURL = require('./api/fetchURL');
 
-const fetchURL = require('./API/fetchURL');
-
-const PORT_NUMBER = process.env.SERVER_PORT || 3000;
-
+const app = express();
 app.use(express.json());
 
 
@@ -34,4 +29,5 @@ app.get('/', function (req, res) {
 // router
 app.use("/requestData", fetchURL);
 
+const PORT_NUMBER = process.env.SERVER_PORT || 3000;
 app.listen(PORT_NUMBER, () => console.log("Server is running on port " + PORT_NUMBER));

@@ -25,6 +25,10 @@ header{
     text-align: center;
 }
 
+h1{
+    font-size: min(2em, 11vw);
+}
+
 main{
     width: 90%;
     margin: 1em auto 0 auto;
