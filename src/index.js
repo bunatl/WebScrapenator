@@ -7,13 +7,12 @@
 const express = require('express');
 // joins two paths
 const path = require('path');
+const ejs = require('ejs');
 require('dotenv').config();
-const axios = require('axios');
 const fetchURL = require('./api/fetchURL');
 
 const app = express();
 app.use(express.json());
-
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -22,7 +21,7 @@ app.set('views', path.join(__dirname, '/views'));
 // sets route for statics pages: https://stackoverflow.com/questions/18629327/adding-css-file-to-ejs
 app.use(express.static(__dirname + '/views'));
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
     res.render('pages/index');
 });
 
@@ -30,4 +29,4 @@ app.get('/', function (req, res) {
 app.use("/requestData", fetchURL);
 
 const PORT_NUMBER = process.env.SERVER_PORT || 3000;
-app.listen(PORT_NUMBER, () => console.log("Server is running on port " + PORT_NUMBER));
+app.listen(PORT_NUMBER, () => console.log(`Server is running on port ${ PORT_NUMBER }`));
